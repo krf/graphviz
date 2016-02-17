@@ -64,10 +64,6 @@ add_gvlib(graphviz_lib_common
     ${CMAKE_CURRENT_BINARY_DIR}/colortbl.h
     ${CMAKE_CURRENT_BINARY_DIR}/ps_font_equiv.h
 )
-execute_process(
-    COMMAND sed "s/#undef WITH_CGRAPH/#define WITH_CGRAPH 1/" ${CMAKE_CURRENT_SOURCE_DIR}/types.h.in
-    OUTPUT_FILE ${CMAKE_CURRENT_BINARY_DIR}/types.h
-)
 target_include_directories(graphviz_lib_common
     PUBLIC ../gvc # FIXME
     ${CMAKE_CURRENT_BINARY_DIR} # types.h

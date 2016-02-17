@@ -189,6 +189,7 @@ configure_file(builddate.h.in builddate.h)
 configure_file(config.h.in config.h)
 configure_file(graphviz_version.h.in graphviz_version.h)
 configure_file(ast_common.h.in ast_common.h) # TODO: We don't actually need this...
+configure_file(lib/common/types.h.in ${CMAKE_CURRENT_BINARY_DIR}/lib/common/types.h) # TODO: No need to generate this. Keeping for compat with autotools
 
 install(FILES
     ${CMAKE_CURRENT_BINARY_DIR}/graphviz_version.h
