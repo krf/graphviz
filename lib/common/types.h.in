@@ -14,9 +14,6 @@
 #ifndef GV_TYPES_H
 #define GV_TYPES_H
 
-/* Define if you want CGRAPH */
-#undef WITH_CGRAPH
-
 #include <stdio.h>
 #include <assert.h>
 #include <signal.h>
