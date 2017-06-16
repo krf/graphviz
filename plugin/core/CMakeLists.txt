@@ -1,5 +1,5 @@
 add_custom_command(OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/ps.h
-    COMMAND awk -f ${Graphviz_SOURCE_DIR}/awk/stringize.awk ${CMAKE_CURRENT_SOURCE_DIR}/ps.txt > ps.h
+    COMMAND ${AWK_BIN} -f ${Graphviz_SOURCE_DIR}/awk/stringize.awk ${CMAKE_CURRENT_SOURCE_DIR}/ps.txt > ps.h
     DEPENDS ps.txt
 )
 

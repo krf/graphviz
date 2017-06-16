@@ -142,16 +142,24 @@ set(INSTALL_TARGETS_DEFAULT_ARGS
   ARCHIVE DESTINATION lib COMPONENT Devel
 )
 
+if (WIN32)
+    set(_build_utilities_dir "${CMAKE_CURRENT_SOURCE_DIR}/windows/dependencies/graphviz-build-utilities")
+    set(SED_BIN "${_build_utilities_dir}/sed.exe")
+    set(AWK_BIN "${_build_utilities_dir}/awk.exe")
+else()
+    set(SED_BIN "sed")
+    set(AWK_BIN "awk")
+endif()
 macro(bison_with_replace INPUT YY_REPLACEMENT)
     string(REPLACE ".y" "" OUTPUT_BASENAME ${INPUT})
     bison_target(${OUTPUT_BASENAME}.pre.c ${INPUT} ${CMAKE_CURRENT_BINARY_DIR}/${OUTPUT_BASENAME}.pre.c)
 
     add_custom_command(OUTPUT ${OUTPUT_BASENAME}.h
-        COMMAND sed "s/yy/${YY_REPLACEMENT}/g" ${OUTPUT_BASENAME}.pre.h > ${OUTPUT_BASENAME}.h
+        COMMAND ${SED_BIN} "s/yy/${YY_REPLACEMENT}/g" ${OUTPUT_BASENAME}.pre.h > ${OUTPUT_BASENAME}.h
         DEPENDS ${OUTPUT_BASENAME}.pre.h
     )
     add_custom_command(OUTPUT ${OUTPUT_BASENAME}.c
-        COMMAND sed "s/yy/${YY_REPLACEMENT}/g" ${OUTPUT_BASENAME}.pre.c > ${OUTPUT_BASENAME}.c
+        COMMAND ${SED_BIN} "s/yy/${YY_REPLACEMENT}/g" ${OUTPUT_BASENAME}.pre.c > ${OUTPUT_BASENAME}.c
         DEPENDS ${OUTPUT_BASENAME}.pre.c
     )
 endmacro()

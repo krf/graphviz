@@ -1,7 +1,11 @@
 flex_target(scan.pre.c scan.l ${CMAKE_CURRENT_BINARY_DIR}/scan.pre.c)
-add_custom_command(OUTPUT scan.c
-    COMMAND sed "s/yy/aag/g" scan.pre.c | sed "/extern.*isatty/d" > scan.c
+add_custom_command(OUTPUT scan.pre1.c
+    COMMAND ${SED_BIN} "s/yy/aag/g" scan.pre.c > scan.pre1.c
     DEPENDS scan.pre.c
+)
+add_custom_command(OUTPUT scan.c
+    COMMAND ${SED_BIN} "/extern.*isatty/d" scan.pre1.c > scan.c
+    DEPENDS scan.pre1.c
 )
 bison_with_replace(grammar.y "aag")
 add_gvlib(graphviz_lib_cgraph

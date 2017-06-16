@@ -12,15 +12,15 @@ add_custom_command(OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/color_lib
     DEPENDS brewer_lib svgcolor_lib ${CMAKE_CURRENT_SOURCE_DIR}/color_names
 )
 add_custom_command(OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/colortbl.h
-    COMMAND awk -f ${Graphviz_SOURCE_DIR}/awk/colortbl.awk color_lib > colortbl.h
+    COMMAND ${AWK_BIN} -f ${Graphviz_SOURCE_DIR}/awk/colortbl.awk color_lib > colortbl.h
     DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/color_lib
 )
 add_custom_command(OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/brewer_lib
-    COMMAND awk -f ${Graphviz_SOURCE_DIR}/awk/brewer.awk ${CMAKE_CURRENT_SOURCE_DIR}/brewer_colors > brewer_lib
+    COMMAND ${AWK_BIN} -f ${Graphviz_SOURCE_DIR}/awk/brewer.awk ${CMAKE_CURRENT_SOURCE_DIR}/brewer_colors > brewer_lib
     MAIN_DEPENDENCY ${CMAKE_CURRENT_SOURCE_DIR}/brewer_colors
 )
 add_custom_command(OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/svgcolor_lib
-    COMMAND awk -f ${Graphviz_SOURCE_DIR}/awk/svgcolor.awk ${CMAKE_CURRENT_SOURCE_DIR}/svgcolor_names > svgcolor_lib
+    COMMAND ${AWK_BIN} -f ${Graphviz_SOURCE_DIR}/awk/svgcolor.awk ${CMAKE_CURRENT_SOURCE_DIR}/svgcolor_names > svgcolor_lib
     MAIN_DEPENDENCY ${CMAKE_CURRENT_SOURCE_DIR}/svgcolor_names
 )
 
