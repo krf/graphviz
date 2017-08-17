@@ -2,7 +2,7 @@ if (UNIX)
     set(sort_command LC_ALL=C sort)
     set(cat_command cat)
 else()
-    set(sort_command sort /LOCALE C)
+    set(sort_command C:\\Windows\\System32\\sort.exe /LOCALE C)
     set(cat_command type)
 endif()
 
